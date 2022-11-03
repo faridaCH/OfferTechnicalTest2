@@ -8,6 +8,7 @@ import com.offertest.UserAPI.enumertators.Gender;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name="USER",schema="PUBLIC",catalog="USER_API")
@@ -111,4 +112,16 @@ public class UserEntity {
         this.gender = gender;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return id == that.id && username.equals(that.username) && birthdate.equals(that.birthdate) && country.equals(that.country) && Objects.equals(phone, that.phone) && gender == that.gender;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, birthdate, country, phone, gender);
+    }
 }

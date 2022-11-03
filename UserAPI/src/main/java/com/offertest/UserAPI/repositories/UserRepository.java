@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface UserRepository  extends CrudRepository<UserEntity, Integer> {
     public List<UserEntity> findByUsernameAndBirthdate(String username, LocalDate date);
+
+    public   Iterable<UserEntity> findByUsernameContains(String search);
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityExistsException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.InvalidObjectException;
 
 
@@ -44,7 +45,7 @@ public class UserAPI {
     }
 
 
-
+    // get user by id
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<UserEntity> getUser(@PathVariable("id") int id){
         try{
@@ -58,6 +59,9 @@ public class UserAPI {
 
 
 
-
+    @GetMapping(value="/search={username}" , produces = "application/json")
+    public Iterable<UserEntity> getAllByParam(@PathVariable("username") String param){
+        return userService.findAll( param );
+    }
 
 }

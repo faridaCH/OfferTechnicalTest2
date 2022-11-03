@@ -90,6 +90,13 @@ public class UserService {
             }
         }
 
+    public Iterable<UserEntity> findAll(String search ) {
+        if( search != null && search.length() > 0 ){
+            return userRepository.findByUsernameContains(search);
+        }
+        return userRepository.findAll();
+    }
+  
 
-
+    
 }

@@ -1,0 +1,58 @@
+2022-11-07T16:42:02.233+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.addUser(UserEntity)
+2022-11-07T16:42:02.242+0100 DEBUG parameter 0 : user = com.offertest.UserAPI.entities.UserEntity@e0086aff
+2022-11-07T16:42:02.253+0100 DEBUG Methode : UserEntity com.offertest.UserAPI.services.UserService.saveUser(UserEntity)
+2022-11-07T16:42:02.253+0100 DEBUG parameter 0 : user = com.offertest.UserAPI.entities.UserEntity@e0086aff
+2022-11-07T16:42:02.465+0100 DEBUG Time : 210 milliseconds
+2022-11-07T16:42:02.465+0100 DEBUG return value : com.offertest.UserAPI.entities.UserEntity@e1bd439e
+2022-11-07T16:42:02.467+0100 DEBUG Time : 225 milliseconds
+2022-11-07T16:42:02.467+0100 DEBUG return value : <200 OK OK,com.offertest.UserAPI.entities.UserEntity@e1bd439e,[]>
+2022-11-07T16:42:38.321+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.getAllUser()
+2022-11-07T16:42:38.321+0100 DEBUG Methode : Iterable com.offertest.UserAPI.services.UserService.findAll()
+2022-11-07T16:42:38.334+0100 DEBUG Time : 13 milliseconds
+2022-11-07T16:42:38.334+0100 DEBUG return value : [com.offertest.UserAPI.entities.UserEntity@e1bd439e]
+2022-11-07T16:42:38.334+0100 DEBUG Time : 13 milliseconds
+2022-11-07T16:42:38.334+0100 DEBUG return value : <200 OK OK,[com.offertest.UserAPI.entities.UserEntity@e1bd439e],[]>
+2022-11-07T16:53:28.582+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.addUser(UserEntity)
+2022-11-07T16:53:28.589+0100 DEBUG parameter 0 : user = com.offertest.UserAPI.entities.UserEntity@e0086aff
+2022-11-07T16:53:28.747+0100 DEBUG Time : 156 milliseconds
+2022-11-07T16:53:28.748+0100 DEBUG return value : <200 OK OK,com.offertest.UserAPI.entities.UserEntity@e1bd439e,[]>
+2022-11-07T16:53:49.039+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.addUser(UserEntity)
+2022-11-07T16:53:49.040+0100 DEBUG parameter 0 : user = com.offertest.UserAPI.entities.UserEntity@7bbd0273
+2022-11-07T16:53:49.044+0100 DEBUG Time : 4 milliseconds
+2022-11-07T16:53:49.044+0100 DEBUG return value : <200 OK OK,com.offertest.UserAPI.entities.UserEntity@7f26b3b1,[]>
+2022-11-07T17:05:28.923+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.addUser(UserEntity)
+2022-11-07T17:05:28.931+0100 DEBUG parameter 0 : user = com.offertest.UserAPI.entities.UserEntity@7bbd0273
+2022-11-07T17:05:29.066+0100 DEBUG Time : 133 milliseconds
+2022-11-07T17:05:29.067+0100 DEBUG return value : <200 OK OK,com.offertest.UserAPI.entities.UserEntity@7d71db12,[]>
+2022-11-07T17:05:37.416+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.addUser(UserEntity)
+2022-11-07T17:05:37.416+0100 DEBUG parameter 0 : user = com.offertest.UserAPI.entities.UserEntity@18535a93
+2022-11-07T17:05:37.420+0100 DEBUG Time : 4 milliseconds
+2022-11-07T17:05:37.420+0100 DEBUG return value : <200 OK OK,com.offertest.UserAPI.entities.UserEntity@1bbd0bd1,[]>
+2022-11-07T17:09:07.141+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.addUser(UserEntity)
+2022-11-07T17:09:07.149+0100 DEBUG parameter 0 : user = com.offertest.UserAPI.entities.UserEntity@c5447673
+2022-11-07T17:09:07.310+0100 DEBUG Time : 158 milliseconds
+2022-11-07T17:09:07.311+0100 DEBUG return value : <200 OK OK,com.offertest.UserAPI.entities.UserEntity@c6f94f12,[]>
+2022-11-07T17:09:17.098+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.addUser(UserEntity)
+2022-11-07T17:09:17.099+0100 DEBUG parameter 0 : user = com.offertest.UserAPI.entities.UserEntity@c5447673
+2022-11-07T17:09:17.105+0100 ERROR Error : 400 BAD_REQUEST " this user already exists "
+2022-11-07T17:09:44.197+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.getAllUser()
+2022-11-07T17:09:44.206+0100 DEBUG Time : 8 milliseconds
+2022-11-07T17:09:44.206+0100 DEBUG return value : <200 OK OK,[com.offertest.UserAPI.entities.UserEntity@c6f94f12],[]>
+2022-11-07T17:09:50.031+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.getUser(int)
+2022-11-07T17:09:50.031+0100 DEBUG parameter 0 : id = 1
+2022-11-07T17:09:50.041+0100 DEBUG Time : 10 milliseconds
+2022-11-07T17:09:50.041+0100 DEBUG return value : <200 OK OK,com.offertest.UserAPI.entities.UserEntity@c6f94f12,[]>
+2022-11-07T17:10:02.274+0100 DEBUG Methode : Iterable com.offertest.UserAPI.controllers.UserAPI.getAllByParam(String)
+2022-11-07T17:10:02.274+0100 DEBUG parameter 0 : param = Farida
+2022-11-07T17:10:02.282+0100 DEBUG Time : 8 milliseconds
+2022-11-07T17:10:02.282+0100 DEBUG return value : [com.offertest.UserAPI.entities.UserEntity@c6f94f12]
+2022-11-07T17:10:25.410+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.getUser(int)
+2022-11-07T17:10:25.410+0100 DEBUG parameter 0 : id = 5
+2022-11-07T17:10:25.411+0100 ERROR Error : 404 NOT_FOUND "User not found"
+2022-11-07T17:10:48.187+0100 DEBUG Methode : Iterable com.offertest.UserAPI.controllers.UserAPI.getAllByParam(String)
+2022-11-07T17:10:48.187+0100 DEBUG parameter 0 : param = Fmado
+2022-11-07T17:10:48.188+0100 DEBUG Time : 1 milliseconds
+2022-11-07T17:10:48.188+0100 DEBUG return value : []
+2022-11-07T17:12:27.444+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.getAllUser()
+2022-11-07T17:12:27.542+0100 DEBUG Time : 95 milliseconds
+2022-11-07T17:12:27.542+0100 DEBUG return value : <200 OK OK,[],[]>

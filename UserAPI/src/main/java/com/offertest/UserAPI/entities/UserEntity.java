@@ -7,7 +7,7 @@ import com.offertest.UserAPI.enumertators.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -26,33 +26,33 @@ public class UserEntity {
 
     public UserEntity(int id, String username, LocalDate birthdate, String country) {
         this.id = id;
-        this.username = username;
+        this.username = username.toUpperCase(Locale.ROOT);
         this.birthdate = birthdate;
-        this.country = country;
+        this.country = country.toUpperCase(Locale.ROOT);
     }
 
     public UserEntity(int id, String username, LocalDate birthdate, String country, String phone, Gender gender) {
         this.id = id;
-        this.username = username;
+        this.username = username.toUpperCase(Locale.ROOT);
         this.birthdate = birthdate;
-        this.country = country;
+        this.country = country.toUpperCase(Locale.ROOT);
         this.phone = phone;
         this.gender = gender;
     }
 
     public UserEntity(int id, String username, LocalDate birthdate, String country, String phone) {
         this.id = id;
-        this.username = username;
+        this.username = username.toUpperCase(Locale.ROOT);
         this.birthdate = birthdate;
-        this.country = country;
+        this.country = country.toUpperCase(Locale.ROOT);
         this.phone = phone;
     }
 
     public UserEntity(int id, String username, LocalDate birthdate, String country, Gender gender) {
         this.id = id;
-        this.username = username;
+        this.username = username.toUpperCase(Locale.ROOT);
         this.birthdate = birthdate;
-        this.country = country;
+        this.country = country.toUpperCase(Locale.ROOT);
         this.gender = gender;
     }
     @Id
@@ -72,7 +72,7 @@ public class UserEntity {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.toUpperCase(Locale.ROOT);
     }
     @Basic
     @Column(name="BIRTHDATE")
@@ -90,7 +90,7 @@ public class UserEntity {
     }
 
     public void setCountry(String country) {
-        this.country = country;
+        this.country = country.toUpperCase(Locale.ROOT);
     }
     @Basic
     @Column(name="PHONE")

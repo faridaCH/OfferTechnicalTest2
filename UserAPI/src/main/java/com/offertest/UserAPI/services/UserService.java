@@ -9,6 +9,7 @@ import javax.persistence.EntityExistsException;
 import java.io.InvalidObjectException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 
@@ -41,11 +42,11 @@ public class UserService {
 
         // check the validity of attributes
         // check of phone number
-        if (user.getPhone() != null && user.getPhone() != "" && !Pattern.compile(regexPattern).matcher(user.getPhone()).matches()) {
+        if (user.getPhone() != null && !user.getPhone().equals("") && !Pattern.compile(regexPattern).matcher(user.getPhone()).matches()) {
             throw new InvalidObjectException("Format of the phone number is invalid");
         }
         //  check if the user is French resident
-        if (!user.getCountry().equals("France")) {
+        if (!user.getCountry().toUpperCase(Locale.ROOT).equals("FRANCE")) {
             throw new InvalidObjectException("The user must be from France to be registered");
         }
         // check if the user is adult
@@ -83,7 +84,7 @@ public class UserService {
 
     // check if the user exist in database
     private void notExist(UserEntity user) throws EntityExistsException {
-        Iterable<UserEntity>  users = findAll(user.getUsername(),user.getBirthdate());
+        Iterable<UserEntity>  users = findAll(user.getUsername().toUpperCase(Locale.ROOT),user.getBirthdate());
 
             if(users.iterator().hasNext()) {
                     throw new EntityExistsException(" this user already exists ");
@@ -92,7 +93,7 @@ public class UserService {
 
     public Iterable<UserEntity> findAll(String search ) {
         if( search != null && search.length() > 0 ){
-            return userRepository.findByUsernameContains(search);
+            return userRepository.findByUsernameContains(search.toUpperCase(Locale.ROOT));
         }
         return userRepository.findAll();
     }

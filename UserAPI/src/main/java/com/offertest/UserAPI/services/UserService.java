@@ -1,5 +1,6 @@
 package com.offertest.UserAPI.services;
 
+import com.offertest.UserAPI.DTO.UserEntityDTO;
 import com.offertest.UserAPI.entities.UserEntity;
 import com.offertest.UserAPI.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import javax.persistence.EntityExistsException;
 import java.io.InvalidObjectException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -21,20 +23,20 @@ public class UserService {
 
 
     // registered user
-    public UserEntity saveUser(UserEntity user) throws InvalidObjectException,EntityExistsException
-    {
+    public UserEntityDTO saveUser(UserEntityDTO userDTO) throws InvalidObjectException, EntityExistsException {
         // check if the user is not exist
-        notExist(user);
+        notExist(userDTO);
         /// check user attributes
-        checkUser(user);
-        userRepository.save(user);
-        return user ;
+        checkUser(userDTO);
+        // Save a user in database
+        userDTO.fromUserEntity(userRepository.save(userDTO.toUserEntity(userDTO)));
+
+        return userDTO;
     }
 
 
-
     // function to check different component of user
-    private void checkUser(UserEntity user)  throws InvalidObjectException {
+    private void checkUser(UserEntityDTO user) throws InvalidObjectException {
         String regexPattern = "^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$";
         // check the required attributes
         checkRequiredAttributes(user);
@@ -50,54 +52,66 @@ public class UserService {
             throw new InvalidObjectException("The user must be from France to be registered");
         }
         // check if the user is adult
-        if (Period.between(user.getBirthdate(), LocalDate.now()).getYears() < 18){
-            throw new InvalidObjectException("The user must be an adult (above 18 years old) to be registered");}
+        if (Period.between(user.getBirthdate(), LocalDate.now()).getYears() < 18) {
+            throw new InvalidObjectException("The user must be an adult (above 18 years old) to be registered");
+        }
         //
-        if (user.getUsername().length() <4)
-            throw new InvalidObjectException("The username is invalid ");
+        if (user.getUsername().length() < 4) throw new InvalidObjectException("The username is invalid ");
 
     }
 
 
     //  function to check the required attributes
-    private void checkRequiredAttributes(UserEntity user) throws InvalidObjectException {
+    private void checkRequiredAttributes(UserEntityDTO user) throws InvalidObjectException {
         if (user.getBirthdate() == null)
             throw new InvalidObjectException("The user must have a birthdate (yyyy-mm-dd)");
-        if (user.getUsername() == null)
-            throw new InvalidObjectException("The user must have a username");
-        if (user.getCountry() == null)
-            throw new InvalidObjectException("The user must have a country");
+        if (user.getUsername() == null) throw new InvalidObjectException("The user must have a username");
+        if (user.getCountry() == null) throw new InvalidObjectException("The user must have a country");
 
     }
 
     // find  all users in database
-    public Iterable<UserEntity> findAll(){ return userRepository.findAll();}
+    public Iterable<UserEntityDTO> findAll() {
+        Iterable<UserEntity> users = userRepository.findAll();
+        ArrayList<UserEntityDTO> usersDTO = new ArrayList<UserEntityDTO>();
+        users.forEach(user -> usersDTO.add(UserEntityDTO.builder().build().fromUserEntity(user)));
+        return usersDTO;
+    }
+
 
     // find user by id
-    public UserEntity findById(Integer id){return userRepository.findById(id).get(); }
+    public UserEntityDTO findById(Integer id) {
+        UserEntity user = userRepository.findById(id).get();
+        return UserEntityDTO.builder().build().fromUserEntity(user);
+    }
 
     // find  all users in database by username and Birthdate
-    public Iterable<UserEntity> findAll( String username,LocalDate date){ return userRepository.findByUsernameAndBirthdate(username, date);}
-
-
+    public UserEntityDTO findAll(String username, LocalDate date) {
+        UserEntity user = userRepository.findByUsernameAndBirthdate(username, date);
+        return UserEntityDTO.builder().build().fromUserEntity(user);
+    }
 
 
     // check if the user exist in database
-    private void notExist(UserEntity user) throws EntityExistsException {
-        Iterable<UserEntity>  users = findAll(user.getUsername().toUpperCase(Locale.ROOT),user.getBirthdate());
+    private void notExist(UserEntityDTO userDTO) throws EntityExistsException {
+        UserEntityDTO userFromDataBase = findAll(userDTO.getUsername().toUpperCase(Locale.ROOT), userDTO.getBirthdate());
 
-            if(users.iterator().hasNext()) {
-                    throw new EntityExistsException(" this user already exists ");
-            }
+        if (userFromDataBase != null) {
+            throw new EntityExistsException(" this user already exists ");
         }
-
-    public Iterable<UserEntity> findAll(String search ) {
-        if( search != null && search.length() > 0 ){
-            return userRepository.findByUsernameContains(search.toUpperCase(Locale.ROOT));
-        }
-        return userRepository.findAll();
     }
-  
 
-    
+    // find  all users by keyWord search
+    public Iterable<UserEntityDTO> findAll(String search) {
+        if (search != null && search.length() > 0) {
+            Iterable<UserEntity> users = userRepository.findByUsernameContains(search.toUpperCase(Locale.ROOT));
+            ArrayList<UserEntityDTO> usersDTO = new ArrayList<UserEntityDTO>();
+            users.forEach(user -> usersDTO.add(UserEntityDTO.builder().build().fromUserEntity(user)));
+            return usersDTO;
+
+        }
+        return findAll();
+    }
+
+
 }

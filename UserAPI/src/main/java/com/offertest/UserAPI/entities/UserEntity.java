@@ -1,20 +1,20 @@
 package com.offertest.UserAPI.entities;
 
 
-
-
 import com.offertest.UserAPI.enumertators.Gender;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Objects;
 
+@Builder
 @Entity
-@Table(name="USER",schema="PUBLIC",catalog="USER_API")
+@Table(name = "USER", schema = "PUBLIC", catalog = "USER_API")
 public class UserEntity {
     private int id;
-    private  String username;
+    private String username;
     private LocalDate birthdate;
     private String country;
     private String phone;
@@ -55,8 +55,9 @@ public class UserEntity {
         this.country = country.toUpperCase(Locale.ROOT);
         this.gender = gender;
     }
+
     @Id
-    @Column(name="ID")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
@@ -65,8 +66,9 @@ public class UserEntity {
     public void setId(int id) {
         this.id = id;
     }
+
     @Basic
-    @Column(name="USERNAME")
+    @Column(name = "USERNAME")
     public String getUsername() {
         return username;
     }
@@ -74,17 +76,19 @@ public class UserEntity {
     public void setUsername(String username) {
         this.username = username.toUpperCase(Locale.ROOT);
     }
+
     @Basic
-    @Column(name="BIRTHDATE")
+    @Column(name = "BIRTHDATE")
     public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate (LocalDate  birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
+
     @Basic
-    @Column(name="COUNTRY")
+    @Column(name = "COUNTRY")
     public String getCountry() {
         return country;
     }
@@ -92,8 +96,9 @@ public class UserEntity {
     public void setCountry(String country) {
         this.country = country.toUpperCase(Locale.ROOT);
     }
+
     @Basic
-    @Column(name="PHONE")
+    @Column(name = "PHONE")
     public String getPhone() {
         return phone;
     }
@@ -101,8 +106,9 @@ public class UserEntity {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
     @Basic
-    @Column(name="GENDER")
+    @Column(name = "GENDER")
     @Enumerated
     public Gender getGender() {
         return gender;

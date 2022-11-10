@@ -1,7 +1,6 @@
 package com.offertest.UserAPI.helpers;
 
 
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
-
 
 
 @Aspect
@@ -23,7 +21,7 @@ public class LoggingUserAspect {
 
 
     @Around("execution(* com.offertest.UserAPI.controllers.UserAPI.*(..) )")
-    public Object callOnController( ProceedingJoinPoint proceedingJoinPoint ) throws Throwable {
+    public Object callOnController(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         return logDataFromUserAPI(proceedingJoinPoint);
     }
 
@@ -42,9 +40,9 @@ public class LoggingUserAspect {
 
 
         try {
-            logger.debug("Methode : "+codeSignature );
-            for (int i = 0; i < args.length; i++){
-                logger.debug("parameter " + i + " : " + argsName[i]+ " = " + args[i]);
+            logger.debug("Methode : " + codeSignature);
+            for (int i = 0; i < args.length; i++) {
+                logger.debug("parameter " + i + " : " + argsName[i] + " = " + args[i]);
             }
             long startTime = System.currentTimeMillis();
             Object value = proceedingJoinPoint.proceed(); // call methode addUser

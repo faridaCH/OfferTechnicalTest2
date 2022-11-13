@@ -59,7 +59,7 @@ public class UserService {
             throw new InvalidObjectException("The user must be an adult (above 18 years old) to be registered");
         }
         //
-        if (user.getUsername().length() < 4) throw new InvalidObjectException("The username is invalid ");
+        if (user.getUsername().length() < 3) throw new InvalidObjectException("The username is invalid ");
 
     }
 

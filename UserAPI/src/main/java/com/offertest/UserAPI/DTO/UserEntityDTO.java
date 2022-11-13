@@ -2,12 +2,18 @@ package com.offertest.UserAPI.DTO;
 
 import com.offertest.UserAPI.entities.UserEntity;
 import com.offertest.UserAPI.enumertators.Gender;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Locale;
+
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@Getter
+@Setter
 @Data
 public class UserEntityDTO {
 
@@ -23,7 +29,7 @@ public class UserEntityDTO {
         if (userEntity == null) {
             return null;
         } else {
-            return UserEntityDTO.builder().id(userEntity.getId()).username(userEntity.getUsername()).birthdate(userEntity.getBirthdate()).country(userEntity.getCountry()).gender(userEntity.getGender()).phone(userEntity.getPhone()).build();
+            return UserEntityDTO.builder().id(userEntity.getId()).username(userEntity.getUsername().toUpperCase(Locale.ROOT)).birthdate(userEntity.getBirthdate()).country(userEntity.getCountry().toUpperCase(Locale.ROOT)).gender(userEntity.getGender()).phone(userEntity.getPhone()).build();
         }
     }
 

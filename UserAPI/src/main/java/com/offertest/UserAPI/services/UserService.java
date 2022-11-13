@@ -3,6 +3,8 @@ package com.offertest.UserAPI.services;
 import com.offertest.UserAPI.DTO.UserEntityDTO;
 import com.offertest.UserAPI.entities.UserEntity;
 import com.offertest.UserAPI.repositories.UserRepository;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-
+@Builder
+@Data
 @Service
 public class UserService {
 
@@ -24,10 +27,10 @@ public class UserService {
 
     // registered user
     public UserEntityDTO saveUser(UserEntityDTO userDTO) throws InvalidObjectException, EntityExistsException {
-        // check if the user is not exist
-        notExist(userDTO);
         /// check user attributes
         checkUser(userDTO);
+        // check if the user is not exist
+        notExist(userDTO);
         // Save a user in database
         userDTO.fromUserEntity(userRepository.save(userDTO.toUserEntity(userDTO)));
 
@@ -85,21 +88,16 @@ public class UserService {
         return UserEntityDTO.builder().build().fromUserEntity(user);
     }
 
-    // find  all users in database by username and Birthdate
-    public UserEntityDTO findAll(String username, LocalDate date) {
-        UserEntity user = userRepository.findByUsernameAndBirthdate(username, date);
-        return UserEntityDTO.builder().build().fromUserEntity(user);
-    }
-
 
     // check if the user exist in database
     private void notExist(UserEntityDTO userDTO) throws EntityExistsException {
-        UserEntityDTO userFromDataBase = findAll(userDTO.getUsername().toUpperCase(Locale.ROOT), userDTO.getBirthdate());
-
-        if (userFromDataBase != null) {
+        Iterable<UserEntity> userFromDataBase = userRepository.findByUsernameAndBirthdate(userDTO.getUsername(), userDTO.getBirthdate());
+        System.out.println("********************************** userentity : " + userFromDataBase);
+        if (userFromDataBase.iterator().hasNext()) {
             throw new EntityExistsException(" this user already exists ");
         }
     }
+
 
     // find  all users by keyWord search
     public Iterable<UserEntityDTO> findAll(String search) {

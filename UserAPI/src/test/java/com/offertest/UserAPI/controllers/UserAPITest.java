@@ -4,19 +4,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.offertest.UserAPI.DTO.UserEntityDTO;
 import com.offertest.UserAPI.enumertators.Gender;
 import com.offertest.UserAPI.services.UserService;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 import static com.offertest.UserAPI.controllers.ConstAppRoot.APP_ROOT;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -27,10 +35,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 //@SpringBootTest
+@RunWith(MockitoJUnitRunner.class)
+//@WebMvcTest
 class UserAPITest {
-/*
+
+    @Mock
     UserService userService;
     @Autowired
     MockMvc mockMvc;
@@ -45,24 +56,25 @@ class UserAPITest {
 
     @Test
     void addUser() throws Exception {
-        // Arrange
-        LocalDate birthDate = LocalDate.of(2000, 12, 12);
-        UserEntityDTO expectedUser = UserEntityDTO.builder().id(1).username("anna").birthdate(birthDate).country("france").gender(Gender.Woman).phone("0635489657").build();
-        // Act
+/*
+        Mockito.when(userService.saveUser(user1)).thenReturn(user1);
 
-        String userJson = objectMapper.writeValueAsString(expectedUser);
-        when(userService.saveUser(expectedUser)).thenReturn(expectedUser);
-        mockMvc.perform(post("http://localhost:8080/" + APP_ROOT + "/save")
+        String userJson = objectMapper.writeValueAsString(user1);
+      MvcResult requestResult= mockMvc.perform(post("http://localhost:8080/" + APP_ROOT + "/save")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(userJson)).andExpect(status().isCreated()).andExpect(jsonPath("$.username").value(expectedUser.getUsername()));
+                .content(userJson).accept(MediaType.APPLICATION_JSON)).andReturn();
+       String  result = requestResult.getResponse().getContentAsString();
+       UserEntityDTO userResponse=new ObjectMapper().readValue(result,UserEntityDTO.class);
+        Assert.assertEquals(1,userResponse.getId());
 
+*/
 
     }
 
     @Test
     void getAllUser() throws Exception {
         ArrayList<UserEntityDTO> users = new ArrayList<>(Arrays.asList(user1, user2, user3));
-
+/*
         Mockito.when(userService.findAll()).thenReturn(users);
 
         mockMvc.perform(MockMvcRequestBuilders.get("http://localhost:8080/" + APP_ROOT + "/all")
@@ -71,10 +83,10 @@ class UserAPITest {
                 .andExpect(jsonPath("$[1].username", is(users.get(1).getUsername())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(3)));
 
-
+*/
     }
 
- */
+
 
     @Test
     void getUser() {

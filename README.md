@@ -74,3 +74,5 @@ The integration test is made in 2 steps:
 For this test, the API must be running and Postman used to send Post/Get message.
 A collection of Postman request is present within the Tests Postman folder.
 Within this collection, the requests are separated in three:
+####Swagger Documentation 
+ the swagger documentation is contained in the url : http://localhost:8080/swagger-ui.html

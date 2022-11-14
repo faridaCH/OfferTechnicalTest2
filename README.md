@@ -1,11 +1,14 @@
-#Build from sources
-##Using the API:
-###Download GIT 
+# Build from sources
+
+## Using the API:
+
+### Download GIT
+
 Before all you need to have Git or a GUI (like TortoiseGit) installed on your Computer.
 
 To download Git : https://git-scm.com/downloads
-Java version
-The current version of Java used in this API is the jdk-11.0.2 : https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html
+Java version The current version of Java used in this API is the
+jdk-11.0.2 : https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html
 ⚠️When downloading new jdk, don't forget to change the environment variables of your system.
 
 ### Download API

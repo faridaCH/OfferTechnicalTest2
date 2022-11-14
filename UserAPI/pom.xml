@@ -8,11 +8,11 @@
         <version>2.6.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.atos</groupId>
-    <artifactId>userAPI</artifactId>
+    <groupId>com.offertest</groupId>
+    <artifactId>UserAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>userAPI</name>
-    <description>userAPI</description>
+    <name>UserAPI</name>
+    <description>UserAPI</description>
     <properties>
         <java.version>11</java.version>
         <repackage.classifier/>
@@ -25,13 +25,55 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.project-lombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.GitHub.kongchen</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <version>3.1.5</version>
+                <configuration>
+                    <apiSources>
+                        <apiSource>
+                            <springmvc>true</springmvc>
+                            <locations>
+                                <location>com.offertest.UserAPI</location>
+                            </locations>
+                            <basePth>http://localhost:8080</basePth>
+                            <info>
+                                <title>Swagger documentation for Offer Technical Test</title>
+                                <version>${project.version}</version>
+                                <description>Swagger API documentation for Offer Technical Test</description>
+                                <Contact>
+                                    <name>Farida CHELHI</name>
+                                </Contact>
+                            </info>
+                            <outputPath>${project.build.directory}</outputPath>
+                            <outputFormats>json</outputFormats>
+                            <swaggerApiRader>com.github.kongchen.swagger.docgen.reader.SpringMvcApiReader
+                            </swaggerApiRader>
+                            <swaggerDirectory>${project.build.directory}</swaggerDirectory>
+                        </apiSource>
+                    </apiSources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
     </build>
-
-
     <repositories>
         <repository>
             <id>spring-releases</id>

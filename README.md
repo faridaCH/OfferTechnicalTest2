@@ -94,4 +94,6 @@ present within the Tests Postman folder. Within this collection, the requests ar
 
 #### Swagger Documentation
 
-the swagger documentation is contained in the url : http://localhost:8080/swagger-ui.html
+the swagger documentation is contained in the url :
+Swagger documentation : http://localhost:8080/swagger-ui.html
+ Swagger OpenApi documentation : http://localhost:8080/v3/api-docs

@@ -1,7 +1,7 @@
 package com.offertest.UserAPI.configurations;
 
 
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -11,9 +11,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static com.offertest.UserAPI.controllers.ConstAppRoot.APP_ROOT;
 
-//@Configuration
-//@EnableAutoConfiguration
-@ComponentScan
+
+@EnableAutoConfiguration
 @EnableSwagger2
 public class SwaggerConfiguration {
 

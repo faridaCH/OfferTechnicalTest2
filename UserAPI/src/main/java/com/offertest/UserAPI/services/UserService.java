@@ -66,17 +66,22 @@ public class UserService {
 
     //  function to check the required attributes
     private void checkRequiredAttributes(UserEntityDTO user) throws InvalidObjectException {
-        if (user.getBirthdate() == null)
-            throw new InvalidObjectException("The user must have a birthdate (yyyy-mm-dd)");
-        if (user.getUsername() == null) throw new InvalidObjectException("The user must have a username");
-        if (user.getCountry() == null) throw new InvalidObjectException("The user must have a country");
-
+        if (user == null) {
+            throw new InvalidObjectException("Invalid user !");
+        } else if ((user.getUsername().isEmpty() && user.getCountry().isEmpty() && user.getBirthdate() == null) || (user.getUsername().isEmpty() && user.getCountry().isEmpty()) || (user.getUsername().isEmpty() && user.getBirthdate() == null) || (user.getBirthdate() == null && user.getCountry().isEmpty())) {
+            throw new InvalidObjectException("The user must have à username, a birthdate (yyyy-mm-dd) and country (French) !");
+        } else {
+            if (user.getBirthdate() == null)
+                throw new InvalidObjectException("The user must have a birthdate (yyyy-mm-dd)");
+            if (user.getUsername() == null) throw new InvalidObjectException("The user must have a username");
+            if (user.getCountry() == null) throw new InvalidObjectException("The user must have a country");
+        }
     }
 
     // find  all users in database
     public Iterable<UserEntityDTO> findAll() {
         Iterable<UserEntity> users = userRepository.findAll();
-        ArrayList<UserEntityDTO> usersDTO = new ArrayList<UserEntityDTO>();
+        ArrayList<UserEntityDTO> usersDTO = new ArrayList<>();
         users.forEach(user -> usersDTO.add(UserEntityDTO.builder().build().fromUserEntity(user)));
         return usersDTO;
     }
@@ -92,23 +97,24 @@ public class UserService {
     // check if the user exist in database
     private void notExist(UserEntityDTO userDTO) throws EntityExistsException {
         Iterable<UserEntity> userFromDataBase = userRepository.findByUsernameAndBirthdate(userDTO.getUsername(), userDTO.getBirthdate());
-        System.out.println("********************************** userentity : " + userFromDataBase);
         if (userFromDataBase.iterator().hasNext()) {
-            throw new EntityExistsException(" this user already exists ");
+            throw new EntityExistsException(" This user already exists ");
         }
     }
 
 
     // find  all users by keyWord search
     public Iterable<UserEntityDTO> findAll(String search) {
-        if (search != null && search.length() > 0) {
+        if (search == null) {
+            return findAll();
+
+        } else {
             Iterable<UserEntity> users = userRepository.findByUsernameContains(search.toUpperCase(Locale.ROOT));
-            ArrayList<UserEntityDTO> usersDTO = new ArrayList<UserEntityDTO>();
+            ArrayList<UserEntityDTO> usersDTO = new ArrayList<>();
             users.forEach(user -> usersDTO.add(UserEntityDTO.builder().build().fromUserEntity(user)));
             return usersDTO;
-
         }
-        return findAll();
+
     }
 
 

@@ -70,7 +70,7 @@ also possesses two "optional" variables, a gender and a phone. Currently, the AP
 gender. The Phone number accept different format (xx xx xx xx xx, +33x xx xx xx xx, xx xxxx xxxx , xx-xx-xx-xx-xx,
 xxxxxxxxxx ...)
 
-#### Tests ( to complete )
+#### Tests 
 
 All the tests are contained within the src/test/java/com/offertest/UserAPI folder.
 

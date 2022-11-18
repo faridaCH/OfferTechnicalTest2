@@ -11,5 +11,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     Iterable<UserEntity> findByUsernameAndBirthdate(String username, LocalDate date);
 
-    Iterable<UserEntity> findByUsernameContains(String search);
+    Iterable<UserEntity>  findByUsernameContains(String param);
 }

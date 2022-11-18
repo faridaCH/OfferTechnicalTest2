@@ -20,7 +20,6 @@ import static com.offertest.UserAPI.controllers.ConstAppRoot.APP_ROOT;
 
 @Api(APP_ROOT)
 @RestController
-//@RequestMapping(APP_ROOT)
 public class UserAPI {
 
 

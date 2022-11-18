@@ -1,0 +1,15 @@
+2022-11-18T17:54:40.488+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.addUser(UserEntityDTO)
+2022-11-18T17:54:40.489+0100 DEBUG parameter 0 : userDTO = UserEntityDTO(id=0, username=farida, birthdate=2000-12-12, country=France, phone=null, gender=null)
+2022-11-18T17:54:40.713+0100 DEBUG Time : 224 milliseconds
+2022-11-18T17:54:40.714+0100 DEBUG return value : <201 CREATED Created,UserEntityDTO(id=0, username=farida, birthdate=2000-12-12, country=France, phone=null, gender=null),[]>
+2022-11-18T17:54:44.884+0100 DEBUG Methode : Iterable com.offertest.UserAPI.controllers.UserAPI.getAllByKeyWord(String)
+2022-11-18T17:54:44.884+0100 DEBUG parameter 0 : param = far
+2022-11-18T17:54:44.894+0100 DEBUG Time : 9 milliseconds
+2022-11-18T17:54:44.894+0100 DEBUG return value : []
+2022-11-18T17:54:49.709+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.getAllUser()
+2022-11-18T17:54:49.729+0100 DEBUG Time : 20 milliseconds
+2022-11-18T17:54:49.729+0100 DEBUG return value : <200 OK OK,[UserEntityDTO(id=1, username=FARIDA, birthdate=2000-12-12, country=FRANCE, phone=null, gender=null)],[]>
+2022-11-18T17:54:55.181+0100 DEBUG Methode : ResponseEntity com.offertest.UserAPI.controllers.UserAPI.getUser(int)
+2022-11-18T17:54:55.181+0100 DEBUG parameter 0 : id = 1
+2022-11-18T17:54:55.197+0100 DEBUG Time : 15 milliseconds
+2022-11-18T17:54:55.197+0100 DEBUG return value : <200 OK OK,UserEntityDTO(id=1, username=FARIDA, birthdate=2000-12-12, country=FRANCE, phone=null, gender=null),[]>
